@@ -1,0 +1,19 @@
+[project]
+name = "assistive_technology_jwc"
+version = "0.1.0"
+description = "Central repository for all the code that powers the Jackson Writing Center writing aide device."
+authors = [
+    {name = "Evan Zhang", email = "zhan4453@purdue.edu"}
+]
+readme = "README.md"
+
+[project.urls]
+repository = "https://github.com/eazhang28/epics-at-jwc"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {""="src"}
+packages = ["assembly-engine"]
