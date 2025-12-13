@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/ez8/Projects/jwc-epics",
+  "command": "/usr/bin/cc  -I/home/ez8/Projects/jwc-epics/./include/grblparse/src  -o CMakeFiles/gpl_library.dir/include/grblparse/src/GrblParserC.c.o -c /home/ez8/Projects/jwc-epics/include/grblparse/src/GrblParserC.c",
+  "file": "/home/ez8/Projects/jwc-epics/include/grblparse/src/GrblParserC.c",
+  "output": "CMakeFiles/gpl_library.dir/include/grblparse/src/GrblParserC.c.o"
+},
+{
+  "directory": "/home/ez8/Projects/jwc-epics",
+  "command": "/usr/bin/cc  -I/home/ez8/Projects/jwc-epics/./include/grblparse/src  -o CMakeFiles/gpl_library.dir/include/grblparse/src/alarm.c.o -c /home/ez8/Projects/jwc-epics/include/grblparse/src/alarm.c",
+  "file": "/home/ez8/Projects/jwc-epics/include/grblparse/src/alarm.c",
+  "output": "CMakeFiles/gpl_library.dir/include/grblparse/src/alarm.c.o"
+},
+{
+  "directory": "/home/ez8/Projects/jwc-epics",
+  "command": "/usr/bin/cc  -I/home/ez8/Projects/jwc-epics/./include/grblparse/src  -o CMakeFiles/gpl_library.dir/include/grblparse/src/e4math.c.o -c /home/ez8/Projects/jwc-epics/include/grblparse/src/e4math.c",
+  "file": "/home/ez8/Projects/jwc-epics/include/grblparse/src/e4math.c",
+  "output": "CMakeFiles/gpl_library.dir/include/grblparse/src/e4math.c.o"
+},
+{
+  "directory": "/home/ez8/Projects/jwc-epics",
+  "command": "/usr/bin/cc  -I/home/ez8/Projects/jwc-epics/./include/grblparse/src  -o CMakeFiles/gpl_library.dir/include/grblparse/src/error.c.o -c /home/ez8/Projects/jwc-epics/include/grblparse/src/error.c",
+  "file": "/home/ez8/Projects/jwc-epics/include/grblparse/src/error.c",
+  "output": "CMakeFiles/gpl_library.dir/include/grblparse/src/error.c.o"
+}
+]

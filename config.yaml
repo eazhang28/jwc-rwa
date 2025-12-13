@@ -1,2 +1,4 @@
-CHAR_DIR: ./chars/
+CHAR_DIR: ./characters/
+CHAR_LOWER_DIR: ./characters/Lower_case/
 SPACE_OFFSET: 10
+WHITE_SPACE: 1

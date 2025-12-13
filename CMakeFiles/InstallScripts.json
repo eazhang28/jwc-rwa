@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/ez8/Projects/jwc-epics/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
