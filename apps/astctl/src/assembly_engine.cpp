@@ -1,10 +1,10 @@
+#include "assembly_engine.hpp"
+#include <iostream>
 #include <set>
 #include <sqlite3.h>
 #include <string>
 #include <vector>
 #include <yaml.h>
-
-#include "assembly_engine.hpp"
 
 class CharVMap {
 
@@ -22,4 +22,19 @@ public:
       : target(input), vmap(vmap) {};
 };
 
-int main() { COMPOSER::Composer("farget", "./config.yaml"); }
+struct example {
+  int x = 0;
+
+  example operator+(int addor) {
+    example temp;
+    temp.x = this->x + addor;
+    return temp;
+  }
+};
+
+int main() {
+
+  example p1 = {10};
+  example blab = p1 + 5;
+  std::cout << "Sum of points: (" << blab.x << ")" << std::endl;
+}
