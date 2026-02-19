@@ -1,1 +1,7 @@
 
+[submodule "external/gtu-code-mod"]
+	path = external/gtu-code-mod
+	url = https://github.com/eazhang28/gtu-code-modified
+[submodule "external/eigen"]
+	path = external/eigen
+	url = https://gitlab.com/libeigen/eigen.git
