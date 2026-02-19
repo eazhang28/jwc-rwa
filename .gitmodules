@@ -1,3 +1,7 @@
-[submodule "include/grblparse"]
-	path = include/grblparse
-	url = https://github.com/MitchBradley/GrblParser.git
+
+[submodule "external/gtu-code-mod"]
+	path = external/gtu-code-mod
+	url = https://github.com/eazhang28/gtu-code-modified
+[submodule "external/eigen"]
+	path = external/eigen
+	url = https://gitlab.com/libeigen/eigen.git

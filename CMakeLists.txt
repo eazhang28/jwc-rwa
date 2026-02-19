@@ -1,13 +1,6 @@
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-cmake_minimum_required(VERSION 4.1)
-set(GPL_LIB_ROOT ./include/grblparse)
-file(GLOB GPL_SOURCES
-  "${GPL_LIB_ROOT}/src/*c"
-)
+cmake_minimum_required(VERSION 3.15)
+project(jwc_embedded)
+set(CMAKE_EXPORT_COMPILED_COMMANDS ON)
 
-add_library(gpl_library STATIC ${GPL_SOURCES})
-
-target_include_directories(gpl_library PUBLIC
-  "${GPL_LIB_ROOT}/src"
-)
-
+add_subdirectory(apps)
+add_subdirectory(external)
