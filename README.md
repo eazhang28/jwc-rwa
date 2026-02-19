@@ -1,4 +1,4 @@
-# epics-at-jwc
+# Jackson Writing Center - Robotic Writing Assistant
 
 epics-at-jwc is a small project that enables safe, two-way serial control of a motion system and produces G-code for handwritten characters using a connected G-code database.
 
