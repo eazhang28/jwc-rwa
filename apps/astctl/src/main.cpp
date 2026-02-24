@@ -1,25 +1,24 @@
-extern "C" {
-#include "cstdio"
-#include "parser.h"
-}
-#include "Eigen/Dense"
-#include <iostream>
-#include <math.h>
-#include <sqlite3.h>
-#include <string>
-#include <vector>
+#ifndef MAIN
+#define MAIN
+#include "main.hpp"
 
-static int special_callback(void *dataret, int count, char **data,
-                            char **columns);
-
-static int special_callback(void *dataret, int count, char **data,
-                            char **columns) {
+int get_data_callback(void *dataret, int count, char **data, char **columns) {
   std::string &d = *static_cast<std::string *>(dataret);
   d.append(data[0]);
   return 0;
 }
 
 int main(void) {
+
+  // this program is ran from the daemon state machine
+  // receives input ./runtime_engine <string_input> <config file (in root)>
+  // tasks, zero the machine, and then read for bounds
+  // read config file, apply transformations as necessary
+  // put input into sequencer
+  // sequencer: retrieve necessary characters from sqlite LUT
+  // sequence characters to match input order (delete from cache when no longer
+  // needed) stream send gcode orders confirm end
+
   struct sqlite3 *db_handle;
   sqlite3_open("fontdch.db", &db_handle);
 
@@ -29,7 +28,7 @@ int main(void) {
   std::string clock;
   void *data_handle = static_cast<void *>(&clock);
   sqlite3_exec(db_handle, "SELECT data FROM FCLOOKUP WHERE char == 'C'",
-               special_callback, data_handle, &errmsg_cstr);
+               get_data_callback, data_handle, &errmsg_cstr);
   std::string &d = *static_cast<std::string *>(data_handle);
   // std::cout << d << std::endl;
   //  std::string &data = *static_cast<std::string *>(data_handle);
@@ -60,3 +59,4 @@ int main(void) {
   parser_free(&parser);
   return 0;
 }
+#endif
