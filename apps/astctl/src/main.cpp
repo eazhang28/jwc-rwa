@@ -1,12 +1,22 @@
 #ifndef MAIN
 #define MAIN
 #include "main.hpp"
+#include "parse.hpp"
+#include "sqlut.hpp"
+#include <memory>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
-int get_data_callback(void *dataret, int count, char **data, char **columns) {
-  std::string &d = *static_cast<std::string *>(dataret);
-  d.append(data[0]);
-  return 0;
+extern "C" {
+#include "parser.h"
+#include <sqlite3.h>
+#include <string.h>
 }
+#include "Eigen/Dense"
+#include <iostream>
+#include <math.h>
+#include <string>
 
 int main(void) {
 
@@ -19,43 +29,38 @@ int main(void) {
   // sequence characters to match input order (delete from cache when no longer
   // needed) stream send gcode orders confirm end
 
-  struct sqlite3 *db_handle;
-  sqlite3_open("fontdch.db", &db_handle);
+  std::unordered_map<char, uint> map;
 
-  char query[100] = "SELECT * FROM FCLOOKUP";
-  std::string errmsg(1000, '\0');
-  char *errmsg_cstr = &errmsg[0];
-  std::string clock;
-  void *data_handle = static_cast<void *>(&clock);
-  sqlite3_exec(db_handle, "SELECT data FROM FCLOOKUP WHERE char == 'C'",
-               get_data_callback, data_handle, &errmsg_cstr);
-  std::string &d = *static_cast<std::string *>(data_handle);
-  // std::cout << d << std::endl;
-  //  std::string &data = *static_cast<std::string *>(data_handle);
-  sqlite3_close(db_handle);
+  std::string input = "HIALL";
+
+  for (char c : input) {
+    map[c]++;
+  }
+
+  std::vector<struct gcoord> arr;
 
   parser_t parser;
   parser_init(&parser);
-  parser_read_gcode_text(&parser, d.c_str());
-  gcode_points_t *point = parser.gcode;
-  std::vector<float> vector;
+  struct sqlite3 *db_handle;
+  std::unique_ptr<std::string> data;
+  sqlite3_open("fontdch.db", &db_handle);
+  for (uint i = 0; i < input.length(); i++) {
+    struct gcoord token;
+    char chr = input[i];
+    map[chr]--;
+    get_chars(db_handle, data, chr);
+    parser_read_gcode_text(&parser, data->c_str());
+    Eigen::MatrixXd mat = gcode_to_matrix(parser, *data);
+    token.matrix = mat;
+    std::cout << token.matrix << std::endl;
+    arr.push_back(token);
+  }
 
-  int dim = 0;
-  gcode_points_t *temp = parser.gcode;
-  do {
-    dim++;
-  } while ((temp = (gcode_points_t *)temp->next) != NULL);
+  for (const auto &crd : arr) {
+    std::cout << crd.matrix << std::endl;
+  }
 
-  int i = 0;
-  Eigen::MatrixXd m(dim, 2);
-  do {
-    m(i, 0) = point->ideal.x;
-    m(i, 1) = point->ideal.y;
-    i++;
-  } while ((point = (gcode_points_t *)point->next) != NULL);
-
-  std::cout << m.array() * 200 << std::endl;
-
+  sqlite3_close(db_handle);
   parser_free(&parser);
   return 0;
 }

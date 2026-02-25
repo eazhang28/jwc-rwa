@@ -1,6 +1,6 @@
-#ifndef SEQUENCER_JWC
-#define SEQUENCER_JWC
+#ifndef SEQUENCER_HPP
+#define SEQUENCER_HPP
 
 #include "main.hpp"
 
-#endif // !SEQUENCER_JWC
+#endif // !SEQUENCER_HPP

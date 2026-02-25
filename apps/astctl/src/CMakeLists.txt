@@ -3,6 +3,10 @@ project(jwc_embedded)
 
 add_executable(jwc_embedded
   main.cpp
+  parse.cpp
+  driver.cpp
+  sqlut.cpp
+  sequencer.cpp
 )
 
 target_include_directories(jwc_embedded PRIVATE
